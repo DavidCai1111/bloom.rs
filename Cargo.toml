@@ -5,3 +5,4 @@ authors = ["David Cai <davidcai1993@yahoo.com>"]
 
 [dependencies]
 bit-vec = "0.4.4"
+fnv = "1.0.5"
