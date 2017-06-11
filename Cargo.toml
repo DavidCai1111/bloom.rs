@@ -1,0 +1,7 @@
+[package]
+name = "bloom-rs"
+version = "0.1.0"
+authors = ["David Cai <davidcai1993@yahoo.com>"]
+
+[dependencies]
+bit-vec = "0.4.4"
