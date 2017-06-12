@@ -2,11 +2,12 @@
 name = "bloom_rs"
 version = "0.1.0"
 authors = ["David Cai <davidcai1993@yahoo.com>"]
+description = "Tiny rust bloom filter implementation"
 documentation = "https://docs.rs/bloom_rs/0.1.0/bloom_rs"
 homepage = "https://github.com/DavidCai1993/bloom.rs"
 readme = "README.md"
 repository = "https://github.com/DavidCai1993/bloom.rs"
-keywords = ["bloom", "bloom filter"]
+keywords = ["bloom", "bloom-filter"]
 categories = ["algorithms"]
 license = "MIT"
 
