@@ -1,5 +1,6 @@
+//! A rust bloom filter implementation.
+
 extern crate bit_vec;
-extern crate fnv;
 
 mod bloom;
 

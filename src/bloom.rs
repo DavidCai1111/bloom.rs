@@ -1,7 +1,8 @@
 use bit_vec::BitVec;
 use std::hash::{Hash, Hasher};
-use fnv::FnvHasher;
+use std::collections::hash_map::DefaultHasher;
 
+/// Representation of a bloom filter.
 #[derive(Debug)]
 pub struct BloomFilter {
     bit_vec: BitVec,
@@ -32,9 +33,8 @@ impl BloomFilter {
         let pairs = Self::base_hashes(data);
 
         for i in 0..self.times {
-            self.bit_vec
-                .set((Self::get_pos_with_i(pairs, i) % self.bits_num as u64) as usize,
-                     true);
+            let pos = self.get_pos(pairs, i);
+            self.bit_vec.set(pos, true);
         }
     }
 
@@ -45,8 +45,7 @@ impl BloomFilter {
         let pairs = Self::base_hashes(data);
 
         for i in 0..self.times {
-            match self.bit_vec
-                      .get((Self::get_pos_with_i(pairs, i) % self.bits_num as u64) as usize) {
+            match self.bit_vec.get(self.get_pos(pairs, i)) {
                 Some(result) => {
                     if !result {
                         return false;
@@ -65,13 +64,13 @@ impl BloomFilter {
         self
     }
 
-    fn get_pos_with_i(pairs: HashPairs, i: usize) -> u64 {
-        (i as u64 + pairs[2 + (((i + (i % 2)) % 4) / 2)])
+    fn get_pos(&self, pairs: HashPairs, i: usize) -> usize {
+        ((i as u64 + pairs[2 + (((i + (i % 2)) % 4) / 2)]) % self.bits_num as u64) as usize
     }
 
     fn base_hashes<T: Hash>(data: T) -> HashPairs {
         let mut result: HashPairs = [0; 4];
-        let mut hasher = FnvHasher::default();
+        let mut hasher = DefaultHasher::new();
         data.hash(&mut hasher);
         result[0] = hasher.finish();
         hasher.write_i32(1);

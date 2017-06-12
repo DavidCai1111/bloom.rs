@@ -1,8 +1,14 @@
 [package]
-name = "bloom-rs"
+name = "bloom_rs"
 version = "0.1.0"
 authors = ["David Cai <davidcai1993@yahoo.com>"]
+documentation = "https://docs.rs/bloom_rs/0.1.0/bloom_rs"
+homepage = "https://github.com/DavidCai1993/bloom.rs"
+readme = "README.md"
+repository = "https://github.com/DavidCai1993/bloom.rs"
+keywords = ["bloom", "bloom filter"]
+categories = ["algorithms"]
+license = "MIT"
 
 [dependencies]
 bit-vec = "0.4.4"
-fnv = "1.0.5"
